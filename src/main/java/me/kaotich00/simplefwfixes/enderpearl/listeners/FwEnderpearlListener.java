@@ -11,6 +11,7 @@ import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.Order;
 import org.spongepowered.api.event.entity.projectile.LaunchProjectileEvent;
 import org.spongepowered.api.event.item.inventory.InteractItemEvent;
+import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 import java.util.Optional;
@@ -38,10 +39,9 @@ public class FwEnderpearlListener {
 
         // Snapshot of the event
         ItemStackSnapshot itemSnapshot = event.getItemStack();
-        String itemType = itemSnapshot.getType().getName();
 
         // Check if it is an enderpearl
-        if(itemType.equals("minecraft:ender_pearl") && optPlayer.isPresent()) {
+        if(itemSnapshot.getType() == ItemTypes.ENDER_PEARL && optPlayer.isPresent()) {
             Player thrower = optPlayer.get();
 
             final EnderpearlService enderpearlService = Sponge.getServiceManager().provideUnchecked(EnderpearlService.class);
